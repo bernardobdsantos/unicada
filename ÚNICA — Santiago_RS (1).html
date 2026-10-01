@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ÚNICA — Sorveteria, Café & Cozinha | Santiago/RS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F8F1E6; --cream2:#EFE2CC; --paper:#FFFDF9;
+  --coffee:#3A2A1E; --coffee2:#5C4330; --caramel:#B9793B; --gold:#C79A47;
+  --text:#3A2A1E; --text-soft:#7A6857; --line:rgba(58,42,30,.14);
+  --radius:6px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:inherit;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{background:var(--cream);color:var(--text);font-family:'Manrope',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Fraunces',serif;color:var(--coffee);font-weight:600;line-height:1.12}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--caramel);font-size:1.05rem;margin-bottom:10px;display:block}
+section{padding:96px 0}
+.bg-paper{background:var(--paper)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:var(--radius);font-weight:700;font-size:.92rem;letter-spacing:.01em;cursor:pointer;border:1.5px solid transparent;transition:transform .15s ease, background .2s ease}
+.btn-primary{background:var(--coffee);color:var(--cream)}
+.btn-primary:hover{background:var(--coffee2);transform:translateY(-2px)}
+.btn-outline{border-color:var(--coffee);color:var(--coffee);background:transparent}
+.btn-outline:hover{background:var(--coffee);color:var(--cream);transform:translateY(-2px)}
+.btn-light{border-color:var(--cream);color:var(--cream)}
+.btn-light:hover{background:var(--cream);color:var(--coffee)}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 0;transition:.3s ease;padding-top:calc(22px + env(safe-area-inset-top,0px))}
+header.scrolled{padding:12px 0;padding-top:calc(12px + env(safe-area-inset-top,0px));background:rgba(248,241,230,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.6rem;color:var(--coffee);letter-spacing:.03em}
+nav.desktop-nav{display:flex;gap:34px;align-items:center}
+nav.desktop-nav a{font-size:.88rem;font-weight:700;letter-spacing:.04em;color:var(--text-soft);transition:color .2s}
+nav.desktop-nav a:hover{color:var(--caramel)}
+.header-actions{display:flex;align-items:center;gap:18px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.burger span{width:24px;height:2px;background:var(--coffee)}
+.mobile-nav{display:none;position:fixed;inset:0;background:var(--coffee);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mobile-nav a{color:var(--cream);font-family:'Fraunces',serif;font-size:1.5rem}
+.mobile-nav.open{display:flex}
+.mobile-close{position:absolute;top:26px;right:26px;background:none;border:none;color:var(--cream);font-size:1.8rem;cursor:pointer}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding:0 0 90px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(circle at 75% 30%, rgba(199,154,71,.35), transparent 55%),
+  linear-gradient(160deg,#5C4330 0%,#3A2A1E 55%,#2A1D14 100%);
+}
+.hero-bg::after{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(115deg, rgba(255,255,255,.03) 0 2px, transparent 2px 90px);}
+.hero-scoop{position:absolute;right:6%;top:14%;width:min(46vw,520px);aspect-ratio:1/1.15;border-radius:46% 54% 50% 50%/54% 50% 50% 46%;
+  background:radial-gradient(circle at 35% 30%, #FFF7E8, #E8C89C 45%, #B9793B 78%, #7A4A22 100%);
+  box-shadow:0 40px 80px -20px rgba(0,0,0,.55), inset 0 -10px 40px rgba(120,60,20,.4);}
+.hero-scoop::before{content:"🍨";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:min(14vw,150px);filter:drop-shadow(0 10px 18px rgba(0,0,0,.35))}
+.hero-content{position:relative;z-index:2;color:var(--cream);max-width:640px}
+.hero-content .eyebrow{color:var(--gold)}
+.hero-content h1{font-size:clamp(2.4rem,5.4vw,4.2rem);color:var(--cream);margin-bottom:18px}
+.hero-content .subtitle{font-family:'Fraunces',serif;font-style:italic;font-size:1.25rem;color:#EAD9BC;margin-bottom:14px}
+.hero-content p.desc{color:#D9CBBB;max-width:480px;margin-bottom:34px;font-size:1.02rem}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:44px}
+.hero-rating{display:flex;align-items:center;gap:14px;color:#EAD9BC}
+.stars{color:var(--gold);letter-spacing:2px;font-size:1.1rem}
+.hero-rating .divider{width:1px;height:28px;background:rgba(234,217,188,.3)}
+.hero-rating strong{color:var(--cream);font-family:'Fraunces',serif;font-size:1.1rem}
+
+/* SECTION HEADS */
+.section-head{max-width:640px;margin-bottom:52px}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem)}
+.section-head p{color:var(--text-soft);margin-top:14px;font-size:1.05rem}
+
+/* CARD GRID (destaques) */
+.grid{display:grid;gap:26px}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--paper);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:transform .25s ease, box-shadow .25s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 40px -20px rgba(58,42,30,.28)}
+.card-media{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:3.4rem;position:relative}
+.card-body{padding:20px 22px 24px}
+.card-body h3{font-size:1.18rem;margin-bottom:6px}
+.card-body p{color:var(--text-soft);font-size:.92rem}
+.tag{position:absolute;top:12px;left:12px;background:var(--coffee);color:var(--cream);font-size:.68rem;font-weight:700;letter-spacing:.05em;padding:5px 10px;border-radius:3px}
+.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.price{font-family:'Fraunces',serif;font-style:italic;color:var(--caramel);font-size:.95rem}
+
+/* MENU TABS */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px}
+.tab-btn{padding:11px 20px;border-radius:30px;border:1.5px solid var(--line);background:var(--paper);font-weight:700;font-size:.86rem;color:var(--text-soft);cursor:pointer;transition:.2s}
+.tab-btn:hover{border-color:var(--caramel)}
+.tab-btn.active{background:var(--coffee);color:var(--cream);border-color:var(--coffee)}
+.menu-note{margin-top:36px;font-size:.88rem;color:var(--text-soft);border-left:3px solid var(--gold);padding-left:14px}
+
+/* EXPERIENCIA */
+.experience{position:relative;background:linear-gradient(160deg,#3A2A1E,#2A1D14);color:var(--cream);overflow:hidden}
+.experience .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.experience h2{color:var(--cream);font-size:clamp(2rem,3.6vw,2.9rem)}
+.experience p{color:#D9CBBB;margin-top:18px;font-size:1.08rem;max-width:480px}
+.experience p+p{margin-top:14px}
+.exp-photo{aspect-ratio:5/4;border-radius:var(--radius);background:
+  radial-gradient(circle at 30% 30%, rgba(199,154,71,.25), transparent 60%),
+  linear-gradient(135deg,#5C4330,#2A1D14);display:flex;align-items:center;justify-content:center;font-size:5rem;border:1px solid rgba(234,217,188,.15)}
+
+/* SOBRE */
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-photo{aspect-ratio:1/1;border-radius:var(--radius);background:linear-gradient(135deg,var(--cream2),var(--paper));display:grid;place-items:center;font-size:4.5rem;border:1px solid var(--line)}
+.about p{color:var(--text-soft);margin-top:16px;font-size:1.05rem}
+.stats{display:flex;gap:40px;margin-top:34px}
+.stat strong{display:block;font-family:'Fraunces',serif;font-size:2rem;color:var(--coffee)}
+.stat span{font-size:.85rem;color:var(--text-soft)}
+
+/* REVIEWS */
+.review-summary{display:flex;align-items:center;gap:24px;margin-bottom:46px;flex-wrap:wrap}
+.review-score{font-family:'Fraunces',serif;font-size:3.2rem;color:var(--coffee)}
+.review-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.review-card .stars{margin-bottom:14px;display:block}
+.review-card p{font-style:italic;color:var(--text);font-size:1.02rem}
+.review-card .who{margin-top:16px;font-style:normal;font-size:.85rem;color:var(--text-soft);font-weight:700}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:14px}
+.gallery-grid div{border-radius:var(--radius);display:grid;place-items:center;font-size:2rem;color:var(--coffee2)}
+.g1{grid-column:span 2;grid-row:span 2;font-size:3rem !important}
+
+/* LOCATION */
+.location .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:60px}
+.info-block{display:flex;gap:16px;margin-bottom:26px}
+.info-block .ic{font-size:1.4rem}
+.info-block h4{font-size:1.02rem;margin-bottom:4px}
+.info-block p{color:var(--text-soft);font-size:.95rem}
+.map-box{border-radius:var(--radius);background:linear-gradient(135deg,var(--cream2),var(--paper));border:1px solid var(--line);min-height:340px;display:grid;place-items:center;text-align:center;padding:30px}
+.map-box .pin{font-size:2.6rem;margin-bottom:10px}
+
+/* FOOTER */
+footer{background:var(--coffee);color:#D9CBBB;padding:60px 0 32px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:36px}
+footer .logo{color:var(--cream)}
+footer h5{color:var(--cream);font-size:.85rem;letter-spacing:.05em;margin-bottom:14px}
+footer a{font-size:.92rem;display:block;margin-bottom:8px;color:#D9CBBB;transition:.2s}
+footer a:hover{color:var(--gold)}
+.foot-bottom{text-align:center;margin-top:46px;padding-top:24px;border-top:1px solid rgba(217,203,187,.15);font-size:.82rem;color:#B8A896}
+
+@media(max-width:980px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .experience .wrap,.about .wrap,.location .wrap{grid-template-columns:1fr}
+  .exp-photo,.about-photo{order:-1}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .g1{grid-column:span 2}
+}
+@media(max-width:760px){
+  nav.desktop-nav,.header-actions .btn{display:none}
+  .burger{display:flex}
+  section{padding:64px 0}
+  .grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
+  .hero{min-height:100svh;padding-bottom:60px}
+  .hero-scoop{width:70vw;top:8%;right:12%;opacity:.55}
+  .stats{gap:24px}
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){}}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap">
+    <a href="#inicio" class="logo">ÚNICA</a>
+    <nav class="desktop-nav">
+      <a href="#inicio">Início</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#destaques">Destaques</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#localizacao">Localização</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#cardapio" class="btn btn-primary">Ver Cardápio</a>
+      <button class="burger" id="burgerBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose" aria-label="Fechar menu">×</button>
+  <a href="#inicio">Início</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#destaques">Destaques</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#avaliacoes">Avaliações</a>
+  <a href="#localizacao">Localização</a>
+</div>
+
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-scoop"></div>
+  <div class="wrap hero-content">
+    <span class="eyebrow">Sorveteria · Café · Cozinha</span>
+    <h1>Uma experiência única.</h1>
+    <p class="subtitle">Sobremesas, cafés e sabores para todos os momentos.</p>
+    <p class="desc">Do sorvete ao café, da sobremesa ao lanche. Descubra tudo o que a ÚNICA tem para você, no coração de Santiago.</p>
+    <div class="hero-btns">
+      <a href="#cardapio" class="btn btn-primary">Ver Cardápio</a>
+      <a href="#localizacao" class="btn btn-light btn-outline" style="color:var(--cream);border-color:var(--cream)">Como Chegar</a>
+    </div>
+    <div class="hero-rating">
+      <span class="stars">★★★★★</span>
+      <div><strong>4,5</strong> no Google</div>
+      <div class="divider"></div>
+      <div>740 avaliações</div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-paper" id="destaques">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Os favoritos da ÚNICA</span>
+      <h2>O que todo mundo pede</h2>
+      <p>Os sabores mais lembrados por quem já provou a ÚNICA.</p>
+    </div>
+    <div class="grid grid-4" id="highlightsGrid"></div>
+  </div>
+</section>
+
+<section id="cardapio">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Cardápio</span>
+      <h2>Um cardápio para todos os gostos</h2>
+      <p>Sorvetes, cafés, doces e opções salgadas — tudo em um só lugar.</p>
+    </div>
+    <div class="tabs" id="menuTabs"></div>
+    <div class="grid grid-3" id="menuGrid"></div>
+    <p class="menu-note" id="menuNote"></p>
+  </div>
+</section>
+
+<section class="experience">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--gold)">A experiência ÚNICA</span>
+      <h2>Não é só sobre comer.</h2>
+      <p>É sobre encontrar um lugar para tomar um café, dividir uma sobremesa, matar a vontade de um sorvete ou fazer uma refeição.</p>
+      <p>É sobre transformar um momento comum em uma experiência ÚNICA.</p>
+    </div>
+    <div class="exp-photo">🕯️</div>
+  </div>
+</section>
+
+<section class="bg-paper about" id="sobre">
+  <div class="wrap">
+    <div class="about-photo">🍦</div>
+    <div>
+      <span class="eyebrow">Sobre a ÚNICA</span>
+      <h2>Conheça a ÚNICA</h2>
+      <p>A ÚNICA reúne em um só lugar uma grande variedade de sabores e opções para diferentes momentos do dia.</p>
+      <p>Do buffet de sorvete às taças especiais, do café aos hambúrgueres e lanches, existe sempre uma opção para acompanhar o seu momento.</p>
+      <div class="stats">
+        <div class="stat"><strong>4,5</strong><span>Nota no Google</span></div>
+        <div class="stat"><strong>740</strong><span>Avaliações</span></div>
+        <div class="stat"><strong>23:15</strong><span>Aberto até</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avaliacoes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Avaliações</span>
+      <h2>O que nossos clientes dizem</h2>
+    </div>
+    <div class="review-summary">
+      <span class="review-score">4,5</span>
+      <div>
+        <span class="stars">★★★★★</span>
+        <p style="color:var(--text-soft);margin-top:4px">740 avaliações no Google</p>
+      </div>
+    </div>
+    <div class="grid grid-3" id="reviewsGrid"></div>
+    <div style="text-align:center;margin-top:42px">
+      <a href="https://www.google.com/search?q=%C3%9ANICA+Santiago+RS" target="_blank" rel="noopener" class="btn btn-outline">Ver mais avaliações</a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-paper" id="galeria">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Galeria</span>
+      <h2>O ambiente ÚNICA</h2>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<section class="location" id="localizacao">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Localização</span>
+      <h2 style="margin-bottom:28px">Venha nos visitar</h2>
+      <div class="info-block">
+        <span class="ic">📍</span>
+        <div><h4>Endereço</h4><p>R. Pinheiro Machado, 2488 - Centro, Santiago - RS, 97700-000</p></div>
+      </div>
+      <div class="info-block">
+        <span class="ic">📞</span>
+        <div><h4>Telefone</h4><p>(55) 3251-9713</p></div>
+      </div>
+      <div class="info-block">
+        <span class="ic">🕗</span>
+        <div><h4>Horário</h4><p>Aberto até 23:15</p></div>
+      </div>
+      <div class="info-block">
+        <span class="ic">💰</span>
+        <div><h4>Faixa de preço</h4><p>R$ 20–40 por pessoa</p></div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=R.+Pinheiro+Machado+2488+Santiago+RS" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:10px">Abrir no Google Maps</a>
+    </div>
+    <div class="map-box">
+      <div>
+        <div class="pin">📍</div>
+        <p style="font-weight:700;color:var(--coffee)">R. Pinheiro Machado, 2488</p>
+        <p style="color:var(--text-soft);margin-top:4px">Centro, Santiago - RS</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <span class="logo">ÚNICA</span>
+      <p style="margin-top:14px;max-width:260px;font-size:.92rem">Sorveteria, café e cozinha no centro de Santiago/RS.</p>
+    </div>
+    <div>
+      <h5>NAVEGAÇÃO</h5>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#destaques">Destaques</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#avaliacoes">Avaliações</a>
+    </div>
+    <div>
+      <h5>CONTATO</h5>
+      <a href="tel:+555132519713">(55) 3251-9713</a>
+      <a href="#localizacao">R. Pinheiro Machado, 2488 - Centro</a>
+      <a href="#localizacao">Santiago - RS, 97700-000</a>
+    </div>
+  </div>
+  <div class="foot-bottom">© 2026 ÚNICA — Santiago/RS. Todos os direitos reservados.</div>
+</footer>
+
+<script>
+// ---- Header scroll state ----
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40));
+
+// ---- Mobile nav ----
+const mobileNav = document.getElementById('mobileNav');
+document.getElementById('burgerBtn').addEventListener('click', () => mobileNav.classList.add('open'));
+document.getElementById('mobileClose').addEventListener('click', () => mobileNav.classList.remove('open'));
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+// ---- Data: Destaques ----
+const highlights = [
+  {icon:'🍨', name:'Taça Ferrero e Rafaelo', desc:'Um dos favoritos entre os clientes.', tag:'Mais pedido'},
+  {icon:'☕', name:'Cappuccino', desc:'Clássico e cremoso, ótimo em qualquer hora.', tag:'Mais pedido'},
+  {icon:'🍫', name:'Mocaccino com Chantilly', desc:'Café, chocolate e chantilly em uma xícara só.'},
+  {icon:'🍋', name:'Torta de Limão', desc:'Doce e cítrica, equilíbrio perfeito.'},
+  {icon:'🍦', name:'Especial Doce de Leite', desc:'Sorvete cremoso com doce de leite.'},
+  {icon:'🥤', name:'Milkshake', desc:'Cremoso, gelado e feito na hora.'},
+  {icon:'🍌', name:'Banana Split', desc:'Um clássico que nunca sai de moda.'},
+];
+const highlightsGrid = document.getElementById('highlightsGrid');
+highlights.forEach(i => {
+  highlightsGrid.innerHTML += `
+    <div class="card">
+      <div class="card-media" style="background:linear-gradient(135deg,var(--cream2),var(--paper))">
+        ${i.tag ? `<span class="tag">${i.tag}</span>` : ''}
+        ${i.icon}
+      </div>
+      <div class="card-body">
+        <h3>${i.name}</h3>
+        <p>${i.desc}</p>
+      </div>
+    </div>`;
+});
+
+// ---- Data: Cardápio completo ----
+const menu = {
+  'Sorvetes & Taças': {icon:'🍨', note:null, items:[
+    {icon:'🍨', name:'Taça Ferrero e Rafaelo', desc:'Uma das taças especiais mais pedidas da casa.'},
+    {icon:'🍦', name:'Especial Doce de Leite', desc:'Sorvete com doce de leite, sabor marcante.'},
+    {icon:'🥛', name:'Taça Moça', desc:'Taça especial da casa.'},
+    {icon:'🍧', name:'Buffet de Sorvete', desc:'Monte sua própria combinação de sabores.'},
+    {icon:'🥤', name:'Milkshake', desc:'Cremoso e feito na hora.'},
+    {icon:'🍌', name:'Banana Split', desc:'O clássico das sorveterias.'},
+  ]},
+  'Cafés': {icon:'☕', note:null, items:[
+    {icon:'☕', name:'Cappuccino', desc:'Um dos mais pedidos da ÚNICA.'},
+    {icon:'🍫', name:'Mocaccino com Chantilly', desc:'Café, chocolate e chantilly.'},
+    {icon:'☕', name:'Café Gourmet', desc:'Para apreciar com calma.'},
+  ]},
+  'Doces': {icon:'🍰', note:null, items:[
+    {icon:'🍋', name:'Torta de Limão', desc:'Doce e cítrica.'},
+    {icon:'🍫', name:'Torta Floresta Negra', desc:'Chocolate em camadas.'},
+    {icon:'🍨', name:'Taça Ferrero e Rafaelo', desc:'Também disponível como sobremesa.'},
+    {icon:'🍦', name:'Especial Doce de Leite', desc:'Cremoso e marcante.'},
+    {icon:'🥛', name:'Taça Moça', desc:'Especial da casa.'},
+    {icon:'🍌', name:'Banana Split', desc:'Clássico e generoso.'},
+  ]},
+  'Hambúrgueres': {icon:'🍔', note:'Quando a fome aperta, a ÚNICA também tem opções salgadas para completar sua experiência.', items:[
+    {icon:'🥩', name:'Ultra Picanha', desc:'Hambúrguer artesanal.'},
+    {icon:'🥓', name:'Hambúrguer de Bacon', desc:'Sabor marcante com bacon.'},
+    {icon:'🍔', name:'Bigue Burguer', desc:'Opção robusta do cardápio.'},
+  ]},
+  'Sanduíches': {icon:'🥪', note:null, items:[
+    {icon:'🥪', name:'Sanduíche Natural', desc:'Opção leve e prática.'},
+    {icon:'🧀', name:'Pão de Queijo', desc:'Quentinho, do jeito tradicional.'},
+  ]},
+  'Pizzas': {icon:'🍕', note:'Para compartilhar.', items:[
+    {icon:'🍕', name:'Pizza Micra', desc:'Opção de pizza da casa.'},
+  ]},
+  'Bebidas & Milkshakes': {icon:'🥤', note:null, items:[
+    {icon:'🥤', name:'Milkshake', desc:'Cremoso, em diversos sabores.'},
+  ]},
+  'Combos & Porções': {icon:'🍟', note:'Detalhes completos (preço, ingredientes, dias e horário) em breve.', items:[
+    {icon:'🍟', name:'Combo Terça-feira Bacon com Fritas', desc:'Combo especial de terça-feira.'},
+  ]},
+};
+const tabsWrap = document.getElementById('menuTabs');
+const menuGrid = document.getElementById('menuGrid');
+const menuNote = document.getElementById('menuNote');
+const categories = Object.keys(menu);
+
+function renderMenu(cat){
+  const data = menu[cat];
+  menuGrid.innerHTML = data.items.map(i => `
+    <div class="card">
+      <div class="card-media" style="background:linear-gradient(135deg,var(--cream2),var(--paper))">${i.icon}</div>
+      <div class="card-body">
+        <h3>${i.name}</h3>
+        <p>${i.desc}</p>
+        <div class="price-row"><span class="price">Consultar</span></div>
+      </div>
+    </div>`).join('');
+  menuNote.textContent = data.note || '';
+  [...tabsWrap.children].forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+}
+tabsWrap.innerHTML = categories.map(c => `<button class="tab-btn" data-cat="${c}">${menu[c].icon} ${c}</button>`).join('');
+tabsWrap.addEventListener('click', e => {
+  const btn = e.target.closest('.tab-btn');
+  if(!btn) return;
+  renderMenu(btn.dataset.cat);
+});
+renderMenu(categories[0]);
+
+// ---- Reviews ----
+const reviews = [
+  {text:'Sorvete e hambúrguer maravilhosos 😍😋 recomendo', who:'Cliente Google'},
+  {text:'Muito bom o atendimento e o ambiente, me senti bem com o atendimento. E hambúrguer estava perfeito.', who:'Cliente Google'},
+  {text:'Ótimo ambiente com muita variedade no cardápio... bons doces e ótimos salgados.', who:'Cliente Google'},
+];
+document.getElementById('reviewsGrid').innerHTML = reviews.map(r => `
+  <div class="review-card">
+    <span class="stars">★★★★★</span>
+    <p>"${r.text}"</p>
+    <div class="who">${r.who}</div>
+  </div>`).join('');
+
+// ---- Gallery placeholders ----
+const gallery = [
+  {icon:'🍨', big:true, bg:'linear-gradient(135deg,#EFE2CC,#FFFDF9)'},
+  {icon:'☕', bg:'linear-gradient(135deg,#5C4330,#3A2A1E)', dark:true},
+  {icon:'🍰', bg:'linear-gradient(135deg,#EFE2CC,#FFFDF9)'},
+  {icon:'🍔', bg:'linear-gradient(135deg,#5C4330,#3A2A1E)', dark:true},
+  {icon:'🍕', bg:'linear-gradient(135deg,#EFE2CC,#FFFDF9)'},
+  {icon:'🥤', bg:'linear-gradient(135deg,#5C4330,#3A2A1E)', dark:true},
+];
+document.getElementById('galleryGrid').innerHTML = gallery.map((g,idx) => `
+  <div class="${idx===0?'g1':''}" style="background:${g.bg};color:${g.dark?'#EAD9BC':'#5C4330'}">${g.icon}</div>`).join('');
+</script>
+</body>
+</html>
